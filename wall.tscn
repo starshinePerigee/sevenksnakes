@@ -2,7 +2,8 @@
 
 [ext_resource type="Script" path="res://wall.gd" id="1_ay278"]
 
-[node name="wall" type="Area2D"]
+[node name="Wall" type="Area2D"]
+collision_layer = 3
 script = ExtResource("1_ay278")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]

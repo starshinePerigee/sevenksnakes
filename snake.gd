@@ -21,5 +21,6 @@ func _process(delta):
 
 func discover_and_remove():
 	$Area2D/Polygon2D.color = alert_color
+	$CollisionPolygon2D.disabled = true
 	var timer = get_tree().create_timer(0.3)
 	timer.timeout.connect(queue_free)

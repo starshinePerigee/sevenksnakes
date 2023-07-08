@@ -1,21 +1,23 @@
-[gd_scene load_steps=2 format=3 uid="uid://cmpup7sa0k5dj"]
+[gd_scene load_steps=3 format=3 uid="uid://cmpup7sa0k5dj"]
 
 [ext_resource type="Script" path="res://vision_cone.gd" id="1_xfy7s"]
+[ext_resource type="PackedScene" uid="uid://jtlwsjo1ppha" path="res://wall.tscn" id="2_g2cr7"]
 
 [node name="VisionCone" type="Area2D"]
-position = Vector2(0, 2)
 script = ExtResource("1_xfy7s")
-radius = 800
-angle = 30.0
+radius = 603
+debug_wall = ExtResource("2_g2cr7")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(0, 0, 772.741, 207.055, 793.156, 104.421, 800, 0, 793.156, -104.421, 772.741, -207.055)
+polygon = PackedVector2Array(0, 0, 557.099, -230.758, 564.813, -211.175, 571.839, -191.335, 578.168, -171.261, 583.793, -150.979, 588.706, -130.513, 592.903, -109.888, 596.377, -89.1291, 599.124, -68.2615, 601.141, -47.3108, 602.426, -26.3025, 602.977, -5.2621, 602.793, 15.7847, 601.875, 36.8123, 600.224, 57.795, 597.841, 78.7073, 594.73, 99.5237, 590.895, 120.219, 586.339, 140.768, 581.069, 161.145, 575.091, 181.326, 568.413, 201.286, 561.042, 221, 557.099, 230.758)
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 color = Color(1, 1, 0.054902, 0.309804)
-polygon = PackedVector2Array(0, 0, 772.741, 207.055, 793.156, 104.421, 800, 0, 793.156, -104.421, 772.741, -207.055)
+polygon = PackedVector2Array(0, 0, 557.099, -230.758, 564.813, -211.175, 571.839, -191.335, 578.168, -171.261, 583.793, -150.979, 588.706, -130.513, 592.903, -109.888, 596.377, -89.1291, 599.124, -68.2615, 601.141, -47.3108, 602.426, -26.3025, 602.977, -5.2621, 602.793, 15.7847, 601.875, 36.8123, 600.224, 57.795, 597.841, 78.7073, 594.73, 99.5237, 590.895, 120.219, 586.339, 140.768, 581.069, 161.145, 575.091, 181.326, 568.413, 201.286, 561.042, 221, 557.099, 230.758)
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
-target_position = Vector2(100, 0)
+rotation = 0.392699
+target_position = Vector2(603, 0)
+collision_mask = 2
 collide_with_areas = true
 collide_with_bodies = false
