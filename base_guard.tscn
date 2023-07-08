@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bl04haahd4x3u"]
+
+[ext_resource type="Script" path="res://vision_cone.gd" id="1_1csqw"]
+[ext_resource type="PackedScene" uid="uid://cmpup7sa0k5dj" path="res://vision_cone.tscn" id="2_ryfky"]
+
+[node name="BaseGuard" type="Node2D"]
+script = ExtResource("1_1csqw")
+
+[node name="VisionCone" parent="." instance=ExtResource("2_ryfky")]
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0.313726, 0.376471, 1, 1)
+polygon = PackedVector2Array(-50, -50, 50, -50, 50, 50, -50, 50)
