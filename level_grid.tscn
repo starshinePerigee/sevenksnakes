@@ -1,0 +1,59 @@
+[gd_scene load_steps=5 format=3 uid="uid://t2pvm52dbf0p"]
+
+[ext_resource type="Script" path="res://level_grid.gd" id="1_hxneq"]
+[ext_resource type="PackedScene" uid="uid://dmn8y6t218k3o" path="res://indicator.tscn" id="2_vl1mk"]
+[ext_resource type="PackedScene" uid="uid://jtlwsjo1ppha" path="res://wall.tscn" id="3_egadc"]
+[ext_resource type="PackedScene" uid="uid://bl04haahd4x3u" path="res://base_guard.tscn" id="3_skst6"]
+
+[node name="LevelGrid" type="Node2D"]
+script = ExtResource("1_hxneq")
+indicator = ExtResource("2_vl1mk")
+guard_scene = ExtResource("3_skst6")
+
+[node name="PointFinder" type="RayCast2D" parent="."]
+position = Vector2(1056, 416)
+exclude_parent = false
+target_position = Vector2(0, 1)
+collision_mask = 2
+hit_from_inside = true
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Wall" parent="Node2D" instance=ExtResource("3_egadc")]
+position = Vector2(32, 32)
+
+[node name="Wall2" parent="Node2D" instance=ExtResource("3_egadc")]
+position = Vector2(32, 96)
+
+[node name="Wall3" parent="Node2D" instance=ExtResource("3_egadc")]
+position = Vector2(32, 160)
+
+[node name="Wall4" parent="Node2D" instance=ExtResource("3_egadc")]
+position = Vector2(544, 352)
+
+[node name="Wall5" parent="Node2D" instance=ExtResource("3_egadc")]
+position = Vector2(32, 288)
+
+[node name="Wall6" parent="Node2D" instance=ExtResource("3_egadc")]
+position = Vector2(32, 352)
+
+[node name="Wall7" parent="Node2D" instance=ExtResource("3_egadc")]
+position = Vector2(32, 416)
+
+[node name="Wall8" parent="Node2D" instance=ExtResource("3_egadc")]
+position = Vector2(32, 480)
+
+[node name="Wall9" parent="Node2D" instance=ExtResource("3_egadc")]
+position = Vector2(32, 544)
+
+[node name="Wall10" parent="Node2D" instance=ExtResource("3_egadc")]
+position = Vector2(32, 608)
+
+[node name="Wall11" parent="Node2D" instance=ExtResource("3_egadc")]
+position = Vector2(608, 160)
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(480, 32, 288, 160)
+default_color = Color(1, 0, 0, 1)

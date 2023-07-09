@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://snake.gd" id="1_0nk8b"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4l7d4"]
-radius = 80.0
+radius = 32.0
 
 [node name="Snake" type="Node2D"]
 script = ExtResource("1_0nk8b")
@@ -17,4 +17,4 @@ shape = SubResource("CircleShape2D_4l7d4")
 [node name="Polygon2D" type="Polygon2D" parent="Area2D"]
 scale = Vector2(1.02, 1.02)
 color = Color(0, 0.505882, 0.0941176, 1)
-polygon = PackedVector2Array(0, -80, 57, -57, 80, 0, 57, 57, 0, 80, -57, 57, -80, 0, -57, -57)
+polygon = PackedVector2Array(0, -32, 23, -23, 32, 0, 23, 23, 0, 32, -23, 23, -32, 0, -23, -23)

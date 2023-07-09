@@ -1,5 +1,6 @@
 extends Node2D
 
+@export var walk_speed = 30
 @export var alert_color = Color(255, 82, 116)
 
 var debug = false
@@ -14,8 +15,11 @@ func _ready():
 		timer.timeout.connect(discover_and_remove)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	pass
+
+
+func _physics_process(delta):
 	pass
 
 
