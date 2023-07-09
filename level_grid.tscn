@@ -3,12 +3,12 @@
 [ext_resource type="Script" path="res://level_grid.gd" id="1_hxneq"]
 [ext_resource type="PackedScene" uid="uid://dmn8y6t218k3o" path="res://indicator.tscn" id="2_vl1mk"]
 [ext_resource type="PackedScene" uid="uid://jtlwsjo1ppha" path="res://wall.tscn" id="3_egadc"]
-[ext_resource type="PackedScene" uid="uid://bl04haahd4x3u" path="res://base_guard.tscn" id="3_skst6"]
+[ext_resource type="PackedScene" uid="uid://cn2grmtx3spbi" path="res://snake.tscn" id="3_xj150"]
 
 [node name="LevelGrid" type="Node2D"]
 script = ExtResource("1_hxneq")
 indicator = ExtResource("2_vl1mk")
-guard_scene = ExtResource("3_skst6")
+guard_scene = ExtResource("3_xj150")
 
 [node name="PointFinder" type="RayCast2D" parent="."]
 position = Vector2(1056, 416)

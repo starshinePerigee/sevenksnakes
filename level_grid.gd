@@ -3,6 +3,7 @@ extends Node2D
 
 @export var grid_size = 64
 var grid = []  # x than y, x+ is right, y+ is down
+var astar = null
 
 @export var indicator: PackedScene
 var indicators = []
@@ -28,24 +29,39 @@ func position_to_indexes(position_: Vector2) -> Array[int]:
 	]
 
 
+func vector_to_astar_id(position_: Vector2) -> int:
+	return position_.x * 1000 + position_.y
+
+
 func recalculate_grid():
 	var grid_corner = position_to_indexes(get_viewport_rect().end)
 	x_indexes = grid_corner[0]
 	y_indexes = grid_corner[1]
 	grid = []
+	astar = AStar2D.new()
 	
 	for x_index in range(x_indexes + 1):
 		grid.append([])
 		for y_index in range(y_indexes + 1):
 			$PointFinder.position = indexes_to_position(x_index, y_index)
 			$PointFinder.force_raycast_update()
-			grid[x_index].append($PointFinder.is_colliding())
+			var is_wall = $PointFinder.is_colliding()
+			grid[x_index].append(is_wall)
+			
+			if not is_wall:
+				var astar_point = Vector2(x_index, y_index)
+				var astar_id = vector_to_astar_id(astar_point)
+				astar.add_point(astar_id, astar_point)
+				if x_index > 0 and not grid[x_index-1][y_index]:
+					astar.connect_points(astar_id, vector_to_astar_id(astar_point + Vector2(-1, 0)))
+				if y_index > 0 and not grid[x_index][y_index-1]:
+					astar.connect_points(astar_id, vector_to_astar_id(astar_point + Vector2(0, -1)))
 			
 			var new_indicator = indicator.instantiate()
 			new_indicator.position = indexes_to_position(x_index, y_index)
 			new_indicator.z_index = 100
 			add_child(new_indicator)
-			if $PointFinder.is_colliding():
+			if is_wall:
 				new_indicator.color = Color(1, 0, 0, 0.7)
 			else:
 				new_indicator.color = Color(0, 1, 0, 0.7)
@@ -66,17 +82,30 @@ func _process(delta):
 		debug_guard.global_position = guard_pos
 		var guard_index = Vector2(position_to_indexes(guard_pos)[0], position_to_indexes(guard_pos)[1])
 		
-		var guard_path = build_back_forth_path(guard_index, Vector2(-1, 0))
+		var guard_path = build_snake_path(guard_index, Vector2(1, 1))
 		
 		$Line2D.clear_points()
-		for point in guard_path:
-			$Line2D.add_point(indexes_to_position(point.x, point.y))
+		if guard_path:
+			for point in guard_path:
+				$Line2D.add_point(indexes_to_position(point.x, point.y))
 		if Input.is_key_pressed(KEY_P):
 			print("break")
 
-func build_snake_path():
-	# step 1: build a hecked randomized a*
-	pass
+
+func build_snake_path(start_index_vector, end_index_vector):
+	# step 1: randomize your a* weights
+	for point_id in astar.get_point_ids():
+		astar.set_point_weight_scale(point_id, (randf()*randf())*10)
+	# step 2: run a* 
+	var point_path = astar.get_point_path(
+		vector_to_astar_id(start_index_vector),
+		vector_to_astar_id(end_index_vector)
+	)
+	# unpack
+	var index_vector_array = []
+	for point in point_path:
+		index_vector_array.append(point)
+	return index_vector_array
 
 
 func check_vector(index_vector: Vector2) -> bool:
